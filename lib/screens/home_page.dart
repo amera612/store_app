@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store_appp/models/product_model.dart';
@@ -37,34 +39,34 @@ class HomePage extends StatelessWidget {
           child: FutureBuilder<List<ProductModel>>(
             future: AllProducts().getAllProduct(),
             builder: (context, snapshot) {
-              //log('Snapshot state: ${snapshot.connectionState}');
-              // if (snapshot.hasError) {
-              //   return Center(
-              //       child: Text(
-              //     'Error: ${snapshot.error}',
-              //     style: const TextStyle(fontSize: 22),
-              //   ));
-              // } else if (snapshot.hasData) {
-              //   List<ProductModel> product = snapshot.data!;
-              return GridView.builder(
-                // itemCount: product.length,
-                clipBehavior: Clip.none,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.4, //width : hight
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 60.0,
-                ),
-                itemBuilder: (context, index) {
-                  //log('Building item for product: ${product[index]}');
-                  return CustomCard(
-                      // product: product[index],
-                      );
-                },
-              );
-              // } else {
-              //   return const Center(child: CircularProgressIndicator());
-              // }
+              log('Snapshot state: ${snapshot.connectionState}');
+              if (snapshot.hasError) {
+                return Center(
+                    child: Text(
+                  'Error: ${snapshot.error}',
+                  style: const TextStyle(fontSize: 22),
+                ));
+              } else if (snapshot.hasData) {
+                List<ProductModel> product = snapshot.data!;
+                return GridView.builder(
+                  itemCount: product.length,
+                  clipBehavior: Clip.none,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.4, //width : hight
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 60.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    log('Building item for product: ${product[index]}');
+                    return CustomCard(
+                      product: product[index],
+                    );
+                  },
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
             },
           ),
         ),

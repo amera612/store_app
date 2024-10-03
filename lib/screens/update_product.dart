@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_appp/models/product_model.dart';
+import 'package:store_appp/services/update_product.dart';
 import 'package:store_appp/widgets/custom_button.dart';
 import 'package:store_appp/widgets/custom_textfield.dart';
 
@@ -11,6 +13,9 @@ class UpdateProductPage extends StatelessWidget {
   dynamic price;
   @override
   Widget build(BuildContext context) {
+    //🥊🥊🥊🥊🥊🥊🥊🥊🥊 to take data from product🥊🥊🥊🥊🥊🥊🥊🥊🥊
+    ProductModel product =
+        ModalRoute.of(context)!.settings.arguments as ProductModel;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -53,7 +58,18 @@ class UpdateProductPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 12),
-                CustomButton(buttonText: 'Update'),
+                CustomButton(
+                  buttonText: 'Update',
+                  onTap: () {
+                    UpdateProductService().updateProduct(
+                      title: productName!,
+                      price: price,
+                      description: desc!,
+                      category: product.category,
+                      image: image!,
+                    );
+                  },
+                ),
               ],
             ),
           ),

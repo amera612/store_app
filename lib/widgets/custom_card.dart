@@ -4,16 +4,17 @@ import 'package:store_appp/screens/update_product.dart';
 
 // ignore: must_be_immutable
 class CustomCard extends StatelessWidget {
-  const CustomCard({
+  CustomCard({
     super.key,
-    //required this.product,
+    required this.product,
   });
-  // ProductModel product;
+  ProductModel product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, UpdateProductPage.id);
+        //🥊🥊🥊🥊🥊🥊🥊🥊🥊 to send the product's data with navigate
+        Navigator.pushNamed(context, UpdateProductPage.id, arguments: product);
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -41,22 +42,19 @@ class CustomCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'yallh',
-                      // product.title.substring(0, 7),
+                      // 'yallh',
+                      product.title.substring(0, 7),
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 17.0,
                       ),
                     ),
-                    // SizedBox(
-                    //   height: 8,
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$ 33',
-                          // '  \$ ${product.price.toString()}',
+                          // '\$ 33',
+                          '  \$ ${product.price.toString()}',
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -77,10 +75,10 @@ class CustomCard extends StatelessWidget {
             right: 20.0,
             top: -50.0,
             child: Image.network(
-              //  product.image,
-              'https://pngimg.com/d/women_bag_PNG6417.png',
-              height: 100.0,
-              width: 130.0,
+              product.image,
+              // 'https://pngimg.com/d/women_bag_PNG6417.png',
+              height: 80.0,
+              width: 100.0,
             ),
           ),
         ],

@@ -1,7 +1,7 @@
 import 'package:store_appp/helper/api.dart';
 import 'package:store_appp/models/product_model.dart';
 
-class UpdateProduct {
+class UpdateProductService {
   Future<ProductModel> updateProduct({
     required String title,
     required double price,
