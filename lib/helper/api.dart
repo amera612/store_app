@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -49,11 +50,12 @@ class Api {
         'Authorization': 'Bearer $tokin',
       });
     }
-
+    log('url:$url  body:$body    tokin:$tokin');
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
+      log(data.toString());
       return data;
     } else {
       throw Exception(
